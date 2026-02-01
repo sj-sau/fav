@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For my cutu pie</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6e6; /* Cute light pink background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 2.5rem; /* Adjusted slightly to fit the name better */
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+
+        .emoji {
+            font-size: 6rem; 
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            position: relative;
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #45a049;
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: absolute;
+            left: 140px; 
+        }
+
+        #success-message {
+            display: none;
+            margin-top: 20px;
+            color: #d32f2f;
+        }
+        
+        #success-message img {
+            width: 200px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-content">
+        <h1>Will you please be my Valentine?</h1>
+        <div class="emoji">😽</div>
+        
+        <div class="buttons">
+            <button id="yesBtn">Yes! 💖</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div id="success-message">
+        <h1>YAY! I knew it! 💖🎉</h1>
+        <p>(Hehe, chale fir date pe!)</p>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const mainContent = document.getElementById('main-content');
+        const successMessage = document.getElementById('success-message');
+
+        function moveButton() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            const randomX = Math.random() * (windowWidth - btnWidth - 50);
+            const randomY = Math.random() * (windowHeight - btnHeight - 50);
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        yesBtn.addEventListener('click', () => {
+            mainContent.style.display = 'none';
+            successMessage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
